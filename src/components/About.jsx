@@ -10,17 +10,37 @@ export default function About() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      // Image Parallax
-      gsap.utils.toArray('.parallax-img').forEach(img => {
-        gsap.to(img, {
-          yPercent: 15,
-          ease: 'none',
-          scrollTrigger: {
-            trigger: img.parentElement,
-            start: 'top bottom',
-            end: 'bottom top',
-            scrub: true
-          }
+      let mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        // Desktop Parallax
+        gsap.utils.toArray('.parallax-img').forEach(img => {
+          gsap.to(img, {
+            yPercent: 15,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img.parentElement,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true
+            }
+          });
+        });
+      });
+
+      mm.add("(max-width: 767px)", () => {
+        // Mobile Parallax (Lighter)
+        gsap.utils.toArray('.parallax-img').forEach(img => {
+          gsap.to(img, {
+            yPercent: 5,
+            ease: 'none',
+            scrollTrigger: {
+              trigger: img.parentElement,
+              start: 'top bottom',
+              end: 'bottom top',
+              scrub: true
+            }
+          });
         });
       });
 
@@ -59,7 +79,7 @@ export default function About() {
           <img
             src={jayRomanImg}
             alt="Jay Roman coaching"
-            className="parallax-img absolute inset-0 w-full h-[120%] object-cover -top-[10%]"
+            className="parallax-img absolute inset-0 w-full h-[120%] object-cover -top-[10%] will-change-transform"
           />
         </div>
 
@@ -80,7 +100,7 @@ export default function About() {
           <img
             src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?q=80&w=2620&auto=format&fit=crop"
             alt="Mobility and activation"
-            className="parallax-img absolute inset-0 w-full h-[120%] object-cover -top-[10%]"
+            className="parallax-img absolute inset-0 w-full h-[120%] object-cover -top-[10%] will-change-transform"
           />
         </div>
 

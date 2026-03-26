@@ -30,7 +30,7 @@ export default function Hero({ onBookClick }) {
     <section ref={heroRef} className="relative h-[100dvh] w-full overflow-hidden flex items-end pb-24 px-6 md:px-16">
       {/* Background Image */}
       <div 
-        className="absolute inset-0 bg-cover bg-center"
+        className="absolute inset-0 bg-cover bg-center will-change-transform"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1541534741688-6078c6bfb5c5?q=80&w=2669&auto=format&fit=crop')" }}
       />
       

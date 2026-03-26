@@ -57,30 +57,49 @@ export default function Protocol() {
       );
 
       const cards = gsap.utils.toArray('.protocol-card');
-      
-      cards.forEach((card, index) => {
-        ScrollTrigger.create({
-          trigger: card,
-          start: "top 10%",
-          endTrigger: ".protocol-container",
-          end: "bottom bottom",
-          pin: true,
-          pinSpacing: false,
-        });
+      let mm = gsap.matchMedia();
 
-        if(index < cards.length - 1) {
-          gsap.to(card, {
-            scale: 0.92,
-            opacity: 0.5,
-            filter: "blur(10px)",
+      mm.add("(min-width: 768px)", () => {
+        cards.forEach((card, index) => {
+          ScrollTrigger.create({
+            trigger: card,
+            start: "top 10%",
+            endTrigger: ".protocol-container",
+            end: "bottom bottom",
+            pin: true,
+            pinSpacing: false,
+          });
+
+          if(index < cards.length - 1) {
+            gsap.to(card, {
+              scale: 0.92,
+              opacity: 0.5,
+              filter: "blur(10px)",
+              scrollTrigger: {
+                trigger: cards[index + 1],
+                start: "top 80%",
+                end: "top 10%",
+                scrub: true,
+              }
+            });
+          }
+        });
+      });
+
+      mm.add("(max-width: 767px)", () => {
+        // Simple slide-up on mobile, no sticky pinning
+        cards.forEach((card) => {
+          gsap.from(card, {
+            y: 40,
+            opacity: 0,
+            duration: 0.8,
+            ease: "power2.out",
             scrollTrigger: {
-              trigger: cards[index + 1],
-              start: "top 80%",
-              end: "top 10%",
-              scrub: true,
+              trigger: card,
+              start: "top 85%"
             }
           });
-        }
+        });
       });
     }, containerRef);
     return () => ctx.revert();
@@ -91,8 +110,8 @@ export default function Protocol() {
       {steps.map((step, i) => (
         <div 
           key={i} 
-          className="protocol-card w-full h-[90vh] flex flex-col md:flex-row items-center justify-center p-6 md:p-16 bg-background rounded-[3rem] border border-primary/10 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)] absolute will-change-transform"
-          style={{ top: `${i * 100}vh`, zIndex: i + 1 }}
+          className="protocol-card w-full h-[90vh] flex flex-col md:flex-row items-center justify-center p-6 md:p-16 bg-background rounded-[3rem] border border-primary/10 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)] relative md:absolute md:[top:var(--desk-top)] will-change-transform mb-6 md:mb-0"
+          style={{ '--desk-top': `${i * 100}vh`, zIndex: i + 1 }}
         >
           <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
             <div className="w-full md:w-1/2 flex flex-col gap-6">
@@ -106,8 +125,8 @@ export default function Protocol() {
           </div>
         </div>
       ))}
-      {/* Spacer to allow scrolling through absolute cards */}
-      <div style={{ height: `${steps.length * 100}vh` }}></div>
+      {/* Spacer to allow scrolling through absolute cards on desktop only */}
+      <div className="hidden md:block" style={{ height: `${steps.length * 100}vh` }}></div>
     </section>
   );
 }

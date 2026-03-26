@@ -13,15 +13,32 @@ export default function Philosophy() {
 
   useEffect(() => {
     const ctx = gsap.context(() => {
-      gsap.to(imageRef.current, {
-        yPercent: 30,
-        ease: "none",
-        scrollTrigger: {
-          trigger: containerRef.current,
-          start: "top bottom",
-          end: "bottom top",
-          scrub: true
-        }
+      let mm = gsap.matchMedia();
+
+      mm.add("(min-width: 768px)", () => {
+        gsap.to(imageRef.current, {
+          yPercent: 30,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        });
+      });
+
+      mm.add("(max-width: 767px)", () => {
+        gsap.to(imageRef.current, {
+          yPercent: 10,
+          ease: "none",
+          scrollTrigger: {
+            trigger: containerRef.current,
+            start: "top bottom",
+            end: "bottom top",
+            scrub: true
+          }
+        });
       });
 
       gsap.from(".word-reveal", {
@@ -43,7 +60,7 @@ export default function Philosophy() {
     <section id="philosophy" ref={containerRef} className="relative w-full py-40 md:py-56 bg-primary overflow-hidden flex items-center justify-center rounded-[3rem] max-w-[98%] mx-auto my-12">
       <div 
         ref={imageRef}
-        className="absolute inset-0 bg-cover bg-center opacity-20 scale-110"
+        className="absolute inset-0 bg-cover bg-center opacity-20 scale-110 will-change-transform"
         style={{ backgroundImage: "url('https://images.unsplash.com/photo-1574680096145-d05b474e2155?q=80&w=2669&auto=format&fit=crop')" }}
       />
       
