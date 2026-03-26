@@ -101,7 +101,7 @@ export default function Protocol() {
       {steps.map((step, i) => (
         <div 
           key={i} 
-          className="protocol-card w-full h-[90vh] flex flex-col md:flex-row items-center justify-center p-6 md:p-16 bg-background rounded-[3rem] border border-primary/10 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)] relative md:sticky md:top-[5vh] will-change-transform mb-6 md:mb-[50vh]"
+          className="protocol-card w-full h-[90vh] flex flex-col md:flex-row items-center justify-center p-6 md:p-16 bg-background rounded-[3rem] border border-primary/10 shadow-[0_-10px_40px_-15px_rgba(0,0,0,0.1)] relative md:sticky md:top-[5vh] will-change-transform mb-6 md:mb-[50vh] last:mb-0 last:md:mb-0"
           style={{ zIndex: i + 1 }}
         >
           <div className="w-full max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-12">
