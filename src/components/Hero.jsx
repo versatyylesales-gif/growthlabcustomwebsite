@@ -2,7 +2,7 @@ import React, { useRef, useEffect } from 'react';
 import gsap from 'gsap';
 import MagneticButton from './MagneticButton';
 
-export default function Hero({ onBookClick }) {
+export default function Hero() {
   const heroRef = useRef(null);
 
   useEffect(() => {
@@ -54,10 +54,10 @@ export default function Hero({ onBookClick }) {
 
         <div className="reveal-btn mt-4">
           <MagneticButton 
-            onClick={onBookClick} 
+            onClick={() => window.location.href = 'mailto:growthlab.jr@gmail.com'} 
             className="bg-accent text-primary text-lg px-10 py-5 rounded-[2rem]"
           >
-            Book a Consultation
+            Contact Me
           </MagneticButton>
         </div>
       </div>

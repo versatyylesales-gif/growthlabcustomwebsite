@@ -23,7 +23,7 @@ export default function Footer() {
           <h4 className="font-heading font-semibold text-background mb-2">Legal</h4>
           <a href="#" className="hover:text-accent transition-colors">Privacy Policy</a>
           <a href="#" className="hover:text-accent transition-colors">Terms of Service</a>
-          <a href="#" className="hover:text-accent transition-colors">Contact</a>
+          <a href="mailto:growthlab.jr@gmail.com" className="hover:text-accent transition-colors">Contact</a>
         </div>
 
       </div>

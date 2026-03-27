@@ -5,7 +5,7 @@ import MagneticButton from './MagneticButton';
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function Navbar({ onBookClick }) {
+export default function Navbar() {
   const navRef = useRef(null);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -36,10 +36,10 @@ export default function Navbar({ onBookClick }) {
       </div>
 
       <MagneticButton 
-        onClick={onBookClick} 
-        className={isScrolled ? 'bg-accent text-primary border-transparent' : 'bg-background text-primary border-transparent'}
+        onClick={() => window.location.href = 'mailto:growthlab.jr@gmail.com'} 
+        className={isScrolled ? 'bg-accent text-primary border-transparent px-6 py-2 rounded-full font-sans font-semibold text-sm' : 'bg-background text-primary border-transparent px-6 py-2 rounded-full font-sans font-semibold text-sm'}
       >
-        Book a Consultation
+        Contact Me
       </MagneticButton>
     </nav>
   );
